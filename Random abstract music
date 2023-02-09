@@ -1,0 +1,35 @@
+Python code that generate random "abstract" music using the MIDIUtil library in Python:
+import random
+from midiutil import MIDIFile
+
+# Set up the MIDI file
+midi = MIDIFile(1)
+track = 0
+time = 0
+
+# Define the key, tempo, and instrument
+key = random.randint(0, 11)
+tempo = random.randint(60, 180)
+instrument = random.randint(1, 128)
+
+midi.addTempo(track, time, tempo)
+midi.addProgramChange(track, 0, 0, instrument)
+
+# Generate random notes
+notes = []
+for i in range(16):
+    pitch = random.randint(50, 80)
+    duration = random.randint(32, 128)
+    volume = random.randint(50, 127)
+    notes.append((pitch, duration, volume))
+
+# Add the notes to the MIDI file
+for i, (pitch, duration, volume) in enumerate(notes):
+    time = i * duration
+    midi.addNote(track, 0, pitch, time, duration, volume)
+
+# Save the MIDI file
+with open("abstract_music.mid", "wb") as output_file:
+    midi.writeFile(output_file)
+
+
