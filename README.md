@@ -1,4 +1,4 @@
-# PythonCodes
+# Python code that generates random "abstract" images using the Python Imaging Library (PIL):
 import random
 from PIL import Image, ImageDraw
 
