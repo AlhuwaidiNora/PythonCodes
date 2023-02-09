@@ -1,0 +1,23 @@
+#Phyton code that generates random poems using the Natural Language Toolkit (NLTK):
+import random
+import nltk
+from nltk.corpus import gutenberg
+
+# Load a corpus of texts
+text = gutenberg.raw("blake-poems.txt")
+
+# Tokenize the text into sentences
+sentences = nltk.sent_tokenize(text)
+
+# Pick a random sentence to start the poem
+poem = [random.choice(sentences)]
+
+# Keep adding sentences until the poem is the desired length
+while len(poem) < 4:
+    next_sentence = random.choice(sentences)
+    if next_sentence not in poem:
+        poem.append(next_sentence)
+
+# Print the resulting poem
+for sentence in poem:
+    print(sentence)
